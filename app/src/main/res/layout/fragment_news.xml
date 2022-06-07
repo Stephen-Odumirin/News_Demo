@@ -28,14 +28,35 @@
         app:layout_constraintStart_toStartOf="@+id/news_recycler_view"
         app:layout_constraintTop_toTopOf="@+id/news_recycler_view" />
 
-    <SearchView
+<!--    <SearchView-->
+<!--        android:id="@+id/news_search_view"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:layout_marginEnd="16dp"-->
+<!--        android:visibility="gone"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+    <androidx.appcompat.widget.SearchView
         android:id="@+id/news_search_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        android:gravity="center"
+        app:iconifiedByDefault="true"
+        app:layout="@layout/custom_search_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:queryBackground="@android:color/transparent"
+        app:queryHint="Search"
+        app:searchIcon="@drawable/ic_search" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
