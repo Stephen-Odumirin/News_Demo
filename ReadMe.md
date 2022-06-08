@@ -10,12 +10,12 @@ Link to Design on [Figma](https://www.figma.com/file/8E2APXR1BtxmQCxOY9Nf4Q/nunt
 
 | Home Screen | Articles Screen | 
 |    :---:     |     :---:      |  
-| <img src="images/img.png" width="500">   | <img src="images/img_2.png" width="500">   |
+| <img src="app/images/img.png" width="500">   | <img src="app/images/img_2.png" width="500">   |
 
 
 | Screen | Bookmarks Screen  |
 |    :---:     |     :---:    |
-| <img src="images/img_1.png" width="500"> | <img src="images/img_3.png" width="500">   |
+| <img src="app/images/img_1.png" width="500"> | <img src="app/images/img_3.png" width="500">   |
 
 ## Contributions
 
