@@ -21,6 +21,11 @@ Download the app https://github.com/Stephen-Odumirin/News_Demo/tree/master/app/r
 |    :---:     |     :---:    |
 | <img src="app/images/img_1.png" width="500"> | <img src="app/images/img_3.png" width="500">   |
 
+
+| View On Web Screen |
+|    :---:     |     :---:    |
+| <img src="app/images/img_4.png" width="500"> |
+
 ## Contributions
 
 Feel free to contribute to this project.
