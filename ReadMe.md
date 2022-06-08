@@ -17,14 +17,14 @@ Download the app https://github.com/Stephen-Odumirin/News_Demo/tree/master/app/r
 | <img src="app/images/img.png" width="500">   | <img src="app/images/img_2.png" width="500">   |
 
 
-| Screen | Bookmarks Screen  |
+| Search Screen | Bookmarks Screen  |
 |    :---:     |     :---:    |
 | <img src="app/images/img_1.png" width="500"> | <img src="app/images/img_3.png" width="500">   |
 
 
-| View On Web Screen |
+| View On Web Screen | Swipe to delete on Bookmarks Screen  |
 |    :---:     |     :---:    |
-| <img src="app/images/img_4.png" width="500"> |
+| <img src="app/images/img_4.png" width="500"> | <img src="app/images/img_5.png" width="500">   |
 
 ## Contributions
 
