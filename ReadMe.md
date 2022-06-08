@@ -8,7 +8,7 @@ Open your gradle.properties file and paste your api key and base url e.g
 MY_KEY = "mykey"
 MY_URL = "https://newsapi.org"
 
-Download the app app/release/app_release.apk
+Download the app https://github.com/Stephen-Odumirin/News_Demo/tree/master/app/release
 
 ## Screenshots
 
