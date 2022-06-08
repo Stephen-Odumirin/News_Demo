@@ -5,8 +5,8 @@ This app was built with mvvm architecture, dagger-hilt, retrofit, room database,
 
 Sign up and get your Api key from https://newsapi.org
 Open your gradle.properties file and paste your api key and base url e.g 
-MY_KEY = "mykey"
-MY_URL = "https://newsapi.org"
+| MY_KEY = "mykey" | 
+| MY_URL = "https://newsapi.org" |
 
 Download the app https://github.com/Stephen-Odumirin/News_Demo/tree/master/app/release
 
