@@ -28,12 +28,12 @@
         android:id="@+id/search_badge"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:gravity="center_vertical"
         android:layout_marginBottom="2dip"
         android:drawablePadding="0dip"
+        android:gravity="center_vertical"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="?android:attr/textColorPrimary"
-        android:visibility="gone" />
+        android:visibility="visible" />
 
     <ImageView
         android:id="@+id/search_button"
@@ -41,8 +41,8 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
-        android:focusable="true"
-        android:contentDescription="@string/abc_searchview_description_search" />
+        android:contentDescription="@string/abc_searchview_description_search"
+        android:focusable="true" />
 
     <LinearLayout
         android:id="@+id/search_edit_frame"
@@ -56,12 +56,12 @@
 
         <ImageView
             android:id="@+id/search_mag_icon"
+            style="@style/RtlOverlay.Widget.AppCompat.SearchView.MagIcon"
             android:layout_width="@dimen/abc_dropdownitem_icon_width"
             android:layout_height="wrap_content"
-            android:scaleType="centerInside"
             android:layout_gravity="center_vertical"
-            android:visibility="gone"
-            style="@style/RtlOverlay.Widget.AppCompat.SearchView.MagIcon" />
+            android:scaleType="centerInside"
+            android:visibility="visible" />
 
         <!-- Inner layout contains the app icon, button(s) and EditText -->
         <LinearLayout
@@ -114,24 +114,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/abc_searchview_description_submit"
+                android:focusable="true"
                 android:paddingLeft="16dip"
                 android:paddingRight="16dip"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:visibility="gone"
-                android:focusable="true"
-                android:contentDescription="@string/abc_searchview_description_submit" />
+                android:visibility="visible" />
 
             <ImageView
                 android:id="@+id/search_voice_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/abc_searchview_description_voice"
+                android:focusable="true"
                 android:paddingLeft="16dip"
                 android:paddingRight="16dip"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:visibility="gone"
-                android:focusable="true"
-                android:contentDescription="@string/abc_searchview_description_voice" />
+                android:visibility="visible" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

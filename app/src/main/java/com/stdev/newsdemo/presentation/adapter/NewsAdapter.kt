@@ -30,8 +30,13 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
             Glide.with(binding.newsListImage.context)
                 .load(article.urlToImage)
                 .into(binding.newsListImage)
-            binding.root.setOnClickListener {
+            binding.newsListCard.setOnClickListener {
                 onItemClickListener?.let {
+                    it(article)
+                }
+            }
+            binding.newsListBookmark.setOnClickListener {
+                onBookmarkClickListener?.let {
                     it(article)
                 }
             }
@@ -39,9 +44,14 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
     }
 
     private var onItemClickListener : ((Article?)-> Unit)? = null
+    private var onBookmarkClickListener : ((Article?)-> Unit)? = null
 
     fun setOnItemClickListener(listener : (Article?)-> Unit){
         onItemClickListener = listener
+    }
+
+    fun setOnBookmarkClickListener(listener : (Article?)-> Unit){
+        onBookmarkClickListener = listener
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {

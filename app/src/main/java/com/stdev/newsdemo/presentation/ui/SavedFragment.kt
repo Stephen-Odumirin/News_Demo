@@ -1,4 +1,4 @@
-package com.stdev.newsdemo
+package com.stdev.newsdemo.presentation.ui
 
 import android.os.Bundle
 import android.util.Log
@@ -11,15 +11,16 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
+import com.stdev.newsdemo.R
 import com.stdev.newsdemo.databinding.FragmentSavedBinding
-import com.stdev.newsdemo.presentation.adapter.NewsAdapter
+import com.stdev.newsdemo.presentation.adapter.SavedNewsAdapter
 import com.stdev.newsdemo.presentation.viewmodel.NewsViewModel
 
 class SavedFragment : Fragment() {
 
     private lateinit var binding: FragmentSavedBinding
     private lateinit var viewModel: NewsViewModel
-    private lateinit var newsAdapter: NewsAdapter
+    private lateinit var newsAdapter: SavedNewsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,21 +35,25 @@ class SavedFragment : Fragment() {
 
         binding = FragmentSavedBinding.bind(view)
         viewModel = (activity as MainActivity).viewModel
-        newsAdapter = (activity as MainActivity).newsAdapter
+        newsAdapter = (activity as MainActivity).savedNewsAdapter
         newsAdapter.setOnItemClickListener {
-            try {
-                val action = it?.let { it1 ->
-                    NewsFragmentDirections.actionNewsFragmentToInfoFragment(
-                        it1
-                    )
-                }
-                if (action != null) {
-                    findNavController().navigate(action)
-                }
-            }catch (exception : Exception){
-                Log.i("NewsFragment",exception.localizedMessage)
-//                Toast.makeText(requireContext(),"${exception.localizedMessage}",Toast.LENGTH_SHORT).show()
+            if (it!=null){
+                val action = SavedFragmentDirections.actionSavedFragmentToInfoFragment(article = it)
+                findNavController().navigate(action)
             }
+//            try {
+//                val action = it?.let { it1 ->
+//                    SavedFragmentDirections.actionSavedFragmentToInfoFragment(
+//                        it1
+//                    )
+//                }
+//                if (action != null) {
+//                    findNavController().navigate(action)
+//                }
+//            }catch (exception : Exception){
+//                Log.i("NewsFragment",exception.localizedMessage)
+////                Toast.makeText(requireContext(),"${exception.localizedMessage}",Toast.LENGTH_SHORT).show()
+//            }
 
         }
 
@@ -77,6 +82,10 @@ class SavedFragment : Fragment() {
 
         }
 
+        binding.savedBack.setOnClickListener {
+            findNavController().navigateUp()
+        }
+
         initRecyclerView()
         viewModel.getSavedNews().observe(viewLifecycleOwner){
             newsAdapter.differ.submitList(it)
@@ -88,7 +97,7 @@ class SavedFragment : Fragment() {
 
     private fun initRecyclerView() {
         binding.savedRecyclerView.apply {
-            layoutManager = LinearLayoutManager(activity)
+            layoutManager = LinearLayoutManager(activity,LinearLayoutManager.VERTICAL,true)
             adapter = newsAdapter
 
         }

@@ -4,28 +4,117 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".InfoFragment">
+    tools:context=".presentation.ui.InfoFragment">
 
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/info_web_save"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
-        android:clickable="true"
-        android:src="@drawable/ic_save"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 
     <WebView
         android:id="@+id/info_web_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
+        app:layout_constraintTop_toTopOf="parent">
 
     </WebView>
+
+    <ImageView
+        android:id="@+id/info_image_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintDimensionRatio="16:9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/info_share"
+        tools:src="@tools:sample/avatars" />
+
+    <ImageView
+        android:id="@+id/info_share"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/ic_share_icon"
+        app:layout_constraintBottom_toBottomOf="@+id/info_bookmark"
+        app:layout_constraintEnd_toStartOf="@+id/info_bookmark"
+        app:layout_constraintTop_toTopOf="@+id/info_bookmark" />
+
+    <ImageView
+        android:id="@+id/info_bookmark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/ic_bookmark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/info_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_left_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/info_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Title"
+        android:textColor="@color/black_primary"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/info_image_view"
+        app:layout_constraintStart_toStartOf="@+id/info_view_web"
+        app:layout_constraintTop_toBottomOf="@+id/info_view_web" />
+
+    <TextView
+        android:id="@+id/info_desc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Description"
+        android:textColor="@color/black_primary"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/info_title"
+        app:layout_constraintStart_toStartOf="@+id/info_title"
+        app:layout_constraintTop_toBottomOf="@+id/info_title" />
+
+    <TextView
+        android:id="@+id/info_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:isScrollContainer="true"
+        android:text="Content"
+        android:textColor="@color/black_primary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/info_desc"
+        app:layout_constraintStart_toStartOf="@+id/info_desc"
+        app:layout_constraintTop_toBottomOf="@+id/info_desc" />
+
+    <TextView
+        android:id="@+id/info_view_web"
+        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/round_button"
+        android:text="🌏 View On Web"
+        android:textAllCaps="false"
+        android:textSize="10sp"
+        app:backgroundTint="@null"
+        app:layout_constraintStart_toStartOf="@+id/info_image_view"
+        app:layout_constraintTop_toBottomOf="@+id/info_image_view" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

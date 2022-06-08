@@ -10,7 +10,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class AdapterModule {
+class NewsAdapterModule {
     @Singleton
     @Provides
     fun provideNewsAdapter() : NewsAdapter{

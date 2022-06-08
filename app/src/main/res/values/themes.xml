@@ -12,5 +12,12 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="chipStyle">@style/choiceChip</item>
     </style>
+
+    <style name="choiceChip" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="chipBackgroundColor">@color/chip_state_list</item>
+        <item name="android:textColor">@color/chip_text_state_list</item>
+    </style>
+
 </resources>

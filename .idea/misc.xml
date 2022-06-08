@@ -3,12 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/round_button.xml" value="0.1175" />
+        <entry key="app/src/main/res/drawable/search_background.xml" value="0.1175" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2907692307692308" />
         <entry key="app/src/main/res/layout/custom_search_view.xml" value="0.2953125" />
-        <entry key="app/src/main/res/layout/fragment_info.xml" value="0.335" />
-        <entry key="app/src/main/res/layout/fragment_news.xml" value="0.2953125" />
-        <entry key="app/src/main/res/layout/fragment_saved.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/news_list_item.xml" value="0.2907692307692308" />
+        <entry key="app/src/main/res/layout/fragment_info.xml" value="0.43775100401606426" />
+        <entry key="app/src/main/res/layout/fragment_news.xml" value="0.45" />
+        <entry key="app/src/main/res/layout/fragment_saved.xml" value="0.2907692307692308" />
+        <entry key="app/src/main/res/layout/fragment_web_view.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/news_list_item.xml" value="0.43775100401606426" />
+        <entry key="app/src/main/res/layout/saved_news_list_item.xml" value="0.4463768115942029" />
         <entry key="app/src/main/res/menu/bottom_menu.xml" value="0.2907692307692308" />
       </map>
     </option>

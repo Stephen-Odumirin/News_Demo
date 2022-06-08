@@ -1,4 +1,4 @@
-package com.stdev.newsdemo
+package com.stdev.newsdemo.presentation.ui
 
 import android.os.Bundle
 import android.util.Log
@@ -6,12 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AbsListView
-import android.widget.SearchView
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
+import com.stdev.newsdemo.R
 import com.stdev.newsdemo.data.util.Resource
 import com.stdev.newsdemo.databinding.FragmentNewsBinding
 import com.stdev.newsdemo.presentation.adapter.NewsAdapter
@@ -31,6 +30,7 @@ class NewsFragment : Fragment() {
     private var isLoading = false
     private var isLastPage = false
     private var pages = 0
+    private var category = "general"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,22 +52,53 @@ class NewsFragment : Fragment() {
         initRecyclerView()
         viewNewsList()
         adapter.setOnItemClickListener {
-            try {
-                val action = it?.let { it1 ->
-                    NewsFragmentDirections.actionNewsFragmentToInfoFragment(
-                        it1
-                    )
-                }
-                if (action != null) {
-                    findNavController().navigate(action)
-                }
-            }catch (exception : Exception){
-                Log.i("NewsFragment",exception.localizedMessage)
-//                Toast.makeText(requireContext(),"${exception.localizedMessage}",Toast.LENGTH_SHORT).show()
+            if(it!=null){
+                val action = NewsFragmentDirections.actionNewsFragmentToInfoFragment(it)
+                findNavController().navigate(action)
+            }
+//            try {
+//                val action = it?.let { it1 ->
+//                    NewsFragmentDirections.actionNewsFragmentToInfoFragment(
+//                        it1
+//                    )
+//                }
+//                if (action != null) {
+//                    findNavController().navigate(action)
+//                }
+//            }catch (exception : Exception){
+//                Log.i("NewsFragment",exception.localizedMessage)
+////                Toast.makeText(requireContext(),"${exception.localizedMessage}",Toast.LENGTH_SHORT).show()
+//            }
+
+        }
+        adapter.setOnBookmarkClickListener {
+            if(it!=null){
+                viewModel.saveArticle(it)
+                Snackbar.make(view,"Bookmarked",Snackbar.LENGTH_SHORT).show()
             }
 
         }
+
+
         setSearchView()
+        binding.newsSavedNews.setOnClickListener {
+            findNavController().navigate(R.id.action_newsFragment_to_savedFragment)
+        }
+
+
+        binding.newsChipGroup.setOnCheckedChangeListener { _, checkedId ->
+            when(checkedId){
+                binding.newsChipGeneral.id -> {category = "general"}
+                binding.newsChipBusiness.id -> {category = "business"}
+                binding.newsChipEntertainment.id -> {category = "entertainment"}
+                binding.newsChipHealth.id -> {category = "health"}
+                binding.newsChipScience.id -> {category = "science"}
+                binding.newsChipSports.id -> {category = "sports"}
+                binding.newsChipTechnology.id -> {category = "technology"}
+            }
+            viewNewsList()
+            //Toast.makeText(requireContext(),"$category",Toast.LENGTH_SHORT).show()
+        }
 
 
     }
@@ -100,17 +131,17 @@ class NewsFragment : Fragment() {
 
     private fun setSearchView(){
 
-        binding.newsSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        binding.newsSearchView.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(p0: String?): Boolean {
-                viewModel.searchedNewsHeadlines(country,"general",page,p0.toString())
+                viewModel.searchedNewsHeadlines(country,category,page,p0.toString())
                 viewSearchList()
                 return false
             }
 
             override fun onQueryTextChange(p0: String?): Boolean {
                 MainScope().launch {
-                    delay(2000)
-                    viewModel.searchedNewsHeadlines(country,"general",page,p0.toString())
+                    delay(2500)
+                    viewModel.searchedNewsHeadlines(country,category,page,p0.toString())
                     viewSearchList()
                 }
                 return false
@@ -127,36 +158,38 @@ class NewsFragment : Fragment() {
     }
 
     private fun viewSearchList(){
-
-        viewModel.searchedNews.observe(viewLifecycleOwner){response->
-            when(response){
-                is Resource.Success -> {
-                    hideProgressBar()
-                    response.data?.let {
-                        adapter.differ.submitList(it.articles.toList())
-                        pages = if (it.totalResults%20 == 0) {
-                            it.totalResults/20
-                        }else{
-                            it.totalResults/20 +1
+        if(view != null){
+            viewModel.searchedNews.observe(viewLifecycleOwner){response->
+                when(response){
+                    is Resource.Success -> {
+                        hideProgressBar()
+                        response.data?.let {
+                            adapter.differ.submitList(it.articles.toList())
+                            pages = if (it.totalResults%20 == 0) {
+                                it.totalResults/20
+                            }else{
+                                it.totalResults/20 +1
+                            }
+                            isLastPage = page == pages
                         }
-                        isLastPage = page == pages
                     }
-                }
-                is Resource.Error -> {
-                    hideProgressBar()
-                    response.message?.let {
-                        Toast.makeText(activity,"An error occured : $it",Toast.LENGTH_SHORT).show()
+                    is Resource.Error -> {
+                        hideProgressBar()
+                        response.message?.let {
+                            Toast.makeText(activity,"An error occured : $it",Toast.LENGTH_SHORT).show()
+                        }
                     }
-                }
-                is Resource.Loading -> {
-                    showProgressBar()
+                    is Resource.Loading -> {
+                        showProgressBar()
+                    }
                 }
             }
         }
+
     }
 
     private fun viewNewsList(){
-        viewModel.getNewsHeadlines(country,page,"general")
+        viewModel.getNewsHeadlines(country,page,category)
         viewModel.newsHeadlines.observe(viewLifecycleOwner) { response ->
             when (response) {
                 is Resource.Success -> {
